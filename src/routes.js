@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const campus = require('./models/campus');
+const docent = require('./models/docent');
 
 // == ROUTES ==
 
@@ -11,6 +12,11 @@ router.get('/', (req, res) => {
         
         +'<h2>/</h2>'
         +'Where you are right now'
+
+        +'<hr/>'
+
+        +'<h2>/docent</h2>'
+        +'Returns all teachers in the database using .find()'
 
         +'<hr/>'
 
@@ -41,6 +47,18 @@ router.get('/', (req, res) => {
         );
 })
 
+// GET DOCENT
+router.get('/docent', async (req, res) => {
+    console.log('/docent route called');
+    try {
+        res.json(await docent.find());
+    } catch(e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+// GET CAMPUS
 router.get('/campus', async (req, res) => {
     console.log('/campus route called');
     try {
