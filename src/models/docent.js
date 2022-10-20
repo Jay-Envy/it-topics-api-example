@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const Campus = require('./campus');
+const campus = require('./campus');
 
 const DocentSchema = new mongoose.Schema({
     voornaam: {type: String},
     achternaam: {type: String},
-    campussen: [{type: mongoose.Schema.Types.ObjectId, ref: Campus}],
+    campussen: [{type: mongoose.Schema.Types.ObjectId, ref: campus}],
 }, {
-    collections: 'docent'
+    collection: 'docent'
 });
 
-module.exports = mongoose.model('Docent', DocentSchema);
+module.exports = mongoose.model('docent', DocentSchema);

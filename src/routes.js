@@ -18,7 +18,12 @@ router.get('/', (req, res) => {
         +'<h2>/docent</h2>'
         +'Returns all teachers in the database using .find()'
 
-        +'<hr/>'
+        +'<hr/>'      
+
+        +'<h2>/docent/create</h2>'
+        +'Creates a docent using .create()'
+
+        +'<hr/>' 
 
         +'<h2>/campus</h2>'
         +'Returns all campuses in the database using .find()'
@@ -47,16 +52,35 @@ router.get('/', (req, res) => {
         );
 })
 
+// -============-
+// -== DOCENT ==-
+// -============-
+
 // GET DOCENT
 router.get('/docent', async (req, res) => {
     console.log('/docent route called');
     try {
-        res.json(await docent.find());
+        res.json(await docent.find().populate('campussen').sort('voornaam'));
     } catch(e) {
         console.log(e);
         res.sendStatus(500);
     }
 });
+
+// CREATE DOCENT
+router.post('/docent/create', async (req, res) => {
+    console.log('/docent/create route called');
+    try {
+        res.send(await docent.create(req.body));
+    } catch(e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+// -============-
+// -== CAMPUS ==-
+// -============-
 
 // GET CAMPUS
 router.get('/campus', async (req, res) => {
