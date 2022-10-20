@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "netlify-lambda serve src",
-    "build": "netlify-labda build src"
+    "build": "netlify-lambda build src"
   },
   "author": "",
   "license": "ISC",
